@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+<div class="container mt-4">
+  <h2>User List</h2>
+{% for x in allpost %}
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="media">
+        <img src="{{x.profile_pic.url}}" class="mr-3" alt="Profile Pic" style="width:64px;">
+        <div class="media-body">
+          <a href="#"><h5 class="mt-0">{{x.user}}</h5></a>
+          <!-- Additional information -->
+        </div>
+      </div>
+    </li>
+    <!-- Add more list items for additional users -->
+  </ul>
+{% endfor %} 
+</div>
+
+</body>
+</html>
+
+
+{% endblock 'main'%}

@@ -1,0 +1,157 @@
+{% load static %}
+<html>
+	
+<head>
+<style>
+	
+.container{
+	display:flex;
+	border: 3px;
+	flex-direction: column;
+	flex-wrap:warp;
+	}
+
+#header{
+position:sticky;
+top:0;
+background-color:#333;
+color:#fff;
+padding: 10px;
+
+}	
+
+
+@media print{
+h2{
+background-color:blue;
+}
+}
+</style>
+	<title>Socio Login</title>
+    <script>
+      /*  setInterval(
+        function () {
+        var randomColor = Math.floor(Math.random()*16777215).toString(16);
+      document.body.style.backgroundColor = "#"+randomColor;
+    },5000);*/
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+</head>
+<body>
+  <div class="p-3 mb-2 bg-secondary text-white">
+  <div class="fixed-top">
+   <a href='/login'><img src="{% static 'images/logsocio.png' %}" width='200px' height='100px' style="margin-top: 20px; margin-left: 40px;" /></a><h3 style="font-family: 'Courier New', Courier, monospace; margin-top: 20px; margin-left: 80px;">hey there!</h3>
+    </div>
+    
+
+    <section class="py-5">
+      <div class="container py-5 mt-5">
+        <div class="row">
+            <div class="col-lg-6 mb-4  mt-4 bg-black  border-0 rounded">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-body p-4 bg-black  border-0 rounded">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                  <h3 class="fw-bold" style="color:white;">Users Visualization</h3>
+                                      <p class="small text-muted mb-0" style="color:white;">see distributed user from west to east, north to south.</p>
+                                </div>
+                                    <div>
+                                      <canvas id="myChart"></canvas>
+      
+                                      </div>
+                                      
+                                      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                      
+                                    <script>
+                                        const ctx = document.getElementById('myChart');
+                                      
+                                        new Chart(ctx, {
+                                          type: 'pie',
+                                          data: {
+                                            labels: ['North', 'West', 'East', 'South'],
+                                            datasets: [{
+                                              label: '# of Users',
+                                              data: [12, 19, 3, 5],
+                                              borderWidth: 1
+                                            }]
+                                          },
+                                          options: {
+                                            scales: {
+                                              y: {
+                                                beginAtZero: true
+                                              }
+                                            }
+                                          }
+                                        });
+                                    </script>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 mb-4 mt-4"><!--login form-->
+                    <div class="card border-0 shadow-sm rounded">
+                        <div class="card-body p-4 bg-black border-0 rounded">
+                            <div class="row align-items-center bg-black  border-0 rounded">
+                                <h3 class="fw-bold">user Login</h3>
+                                <form method="POST" action="/login">
+                                  {% csrf_token %}
+                                  <div class="mb-3">
+                                      <label for="Input1" class="form-label"><strong>Username:</strong></label>
+                                      <input type="text" name="uname" class="form-control" id="Input1" placeholder="enter username">
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="Input3" class="form-label"><strong>Password:</strong></label>
+                                      <input type="password" name="upass" class="form-control" id="Input3" placeholder="enter password again">
+                                  </div>
+                                  <div class="mb-3">
+                                      <input type="submit" class="btn btn-danger" value="Login"  />
+                                      Not User? <a href="/register" style="text-decoration:none;">Register</a>
+                                  </div>
+                              </form>
+                              </div>
+                              <p><img src="{% static 'images/twitty.gif' %}" width='500px' height='350px' /></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </section>
+	
+  <h6 color='#333' align='center' >English (UK)
+		मराठी
+		हिन्दी
+		اردو
+		ગુજરાતી
+		ಕನ್ನಡ
+		ਪੰਜਾਬੀ
+		தமிழ்
+		বাংলা
+		తెలుగు
+		മലയാളം<br>
+		
+		Sign Up Log in MessengerSocio  Information Centre Privacy Policy Privacy Centre Groups About Create adCreate Page Developers Careers 
+		CookiesAdChoicesTermsHelpContact uploading and non-usersSettingsActivity log
+		socio © 2023
+	</h6>
+    <script>
+        const myTimeout = setTimeout(myGreeting, 3000);
+        
+        function myGreeting() {
+          document.getElementById("demo3").innerHTML = "Stachu!!"
+        }
+        
+        function myStopFunction() {
+          clearTimeout(myTimeout);
+        }
+            
+    </script>
+            
+          </div>
+</body>
+        
+</html>

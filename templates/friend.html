@@ -1,0 +1,466 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends</title>
+    <link rel="icon" href="./images/fb.jpeg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header {
+            background-color: #3b5998;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #logo {
+            display: flex;
+            align-items: center;
+        }
+
+        #search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        #profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #icons-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icon {
+            margin-right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #f0f2f5;
+            position: fixed;
+            left: 0;
+            top: 60px;
+            /* Adjusted top position to align with the header */
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidebar-link {
+            font-size: 18px;
+            color: rgb(12, 12, 12);
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar-link:hover {
+            background-color: #555;
+        }
+
+        /* Media Query for mobile responsiveness */
+        @media only screen and (max-width: 768px) {
+            #menu-icon {
+                display: block;
+            }
+
+            #sidebar {
+                width: 0;
+            }
+
+            #header {
+                justify-content: flex-start;
+            }
+
+            #icons-container {
+                display: none;
+            }
+        }
+
+        .card {
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: scale(1.05); /* Increase the size on hover */
+            box-shadow: 0 0 20px #3b5998; /* Blue box shadow with increased size */
+        }
+        
+        
+        .card-body:hover {
+            background-color: #eee; /* Change background color on hover */
+        }
+
+        .card {
+            transition: transform 0.3s;
+        }
+
+        .card-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+    </style>
+        
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <div id="logo">
+            <span id="menu-icon" onclick="toggleSidebar">&#9776;</span>
+            <img src="{%static 'images/logsocio.png' %}" alt="Facebook Icon" style="width: 100px; height: 40px; margin-right: 10px;">
+
+        </div>
+
+        <div id="search-bar">
+            <!-- Add your search bar here -->
+            <input type="text" placeholder="Search Friends" style="width: 100%; padding: 5px;">
+        </div>
+
+        <div id="icons-container">
+           <a href="/home"> <span class="header-icon">🏠</span></a>
+            <span class="header-icon">👫</span>
+            <span class="header-icon">📹</span>
+            <span class="header-icon">🎮</span>
+            <span class="header-icon">🌐</span>
+            <img id="profile-image" src="{%static 'images/priyesh.jpg' %}" alt="Profile Image">
+            <!-- Add other icons as needed -->
+        </div>
+    </div>
+
+    <div id="sidebar">
+        <a class="sidebar-link" href="#" onclick="showNotification()">🔔 Notifications</a>
+        <a href="/home" class="sidebar-link" href="#">🏠 Home</a>
+        <a class="sidebar-link" href="#">👫 Friend Requests</a>
+        <a class="sidebar-link" href="#">👥 Suggestions</a>
+        <a href='/message' class="sidebar-link" href="#">💬 Messages</a>
+        <a class="sidebar-link" href="#">🎉 Birthdays</a>
+        <a class="sidebar-link" href="#">📑 Custom Lists</a>
+        <!-- Add other sidebar items here -->
+    </div>
+
+    <!-- Your main content goes here -->
+    <div style="margin-left: 250px; padding: 20px;">
+        <!-- Main content -->
+        <div class="container">
+            <div class="main">
+                <h1 class="text-left mt-5">People you may know...</h1>
+                <div class="row row-cols-1 row-col-mt-4 g-4 py-5">
+
+                    <div class="card text-center mb-1" style="width: 18rem;">
+                        <img src="{% static 'images/Mark Waugh.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Mark Waugh</h2>
+                            <p class="card-text">13.2K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Mark Waugh')">Add friend</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <img src="{%static 'images/Swalina Lee.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Swalina Lee</h2>
+                            <p class="card-text">26.2K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Swalina Lee')">Add friend</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <img src="{%static 'images/Glen Maxwell.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Glen Maxwell</h2>
+                            <p class="card-text">9.5K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Glen Maxwell')">Add friend</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <img src="{%static 'images/Stuart Binny.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Stuart Binny</h2>
+                            <p class="card-text">3.2K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Stuart Binny')">Add friend</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <img src="{%static 'images/Nita Khapra.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Nita Khapra</h2>
+                            <p class="card-text">10.2K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Nita Khapra')">Add friend</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <img src="{%static 'images/Steve Jobs.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Steve Jobs</h2>
+                            <p class="card-text">50.7K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Steve Jobs')">Add friend</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <img src="{%static 'images/Rina Ganasen.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Rina Ganasen</h2>
+                            <p class="card-text">1.7K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Rina Ganasen')">Add friend</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <img src="{%static 'images/Sachin Tendulkar.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Sachin Tendulkar</h2>
+                            <p class="card-text">33.4K mutual friends</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-block" onclick="showAlert('Added to your friend list')
+                 onclick=addFriend('Sachin Tendulkar')">Add friend</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // Get references to elements
+                            var rightSidebar = document.getElementById('right-sidebar');
+
+                            // Function to add a friend card to the right sidebar
+                            function addFriendCardToSidebar(userName) {
+                                var friendCard = document.createElement('div');
+                                friendCard.className = 'friend-card card text-center mb-3';
+                                friendCard.style.width = '18rem';
+
+                                var img = document.createElement('img');
+                                img.className = 'card-img-top';
+                                img.src = '{% static "images/" %}' + userName + '.jpg'; // assuming images are named after the user
+
+                                var cardBody = document.createElement('div');
+                                cardBody.className = 'card-body';
+
+                                var cardTitle = document.createElement('h2');
+                                cardTitle.className = 'card-title';
+                                cardTitle.textContent = userName;
+
+                                var cardText = document.createElement('p');
+                                cardText.className = 'card-text';
+                                cardText.textContent = '13.2K mutual friends ';
+
+                                var removeButton = document.createElement('button');
+                                removeButton.className = 'btn btn-danger';
+                                removeButton.textContent = 'Remove';
+                                removeButton.addEventListener('click', function () {
+                                    friendCard.remove();
+                                });
+
+                                cardBody.appendChild(cardTitle);
+                                cardBody.appendChild(cardText);
+                                cardBody.appendChild(removeButton);
+
+                                friendCard.appendChild(img);
+                                friendCard.appendChild(cardBody);
+
+                                rightSidebar.appendChild(friendCard);
+                            }
+
+                            // Function to be called when "Add friend" button is clicked
+                            window.addFriend = function (userName) {
+                                // Add the friend card to the right sidebar
+                                addFriendCardToSidebar(userName);
+                            };
+                        });
+                    </script>
+
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                        crossorigin="anonymous"></script>
+                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+                    <script>
+                        function showAlert(message) {
+                            alert(message);
+                        }
+                    </script>
+                </div>
+
+                <style>
+                    /* Your existing styles... */
+
+                    #right-sidebar {
+                        width: 0;
+                        height: 100%;
+                        position: fixed;
+                        top: 60px;
+                        right: 0;
+                        background-color: #f0f2f5;
+                        overflow-x: hidden;
+                        padding-top: 20px;
+                        transition: 0.5s;
+                        
+                    }
+
+                    #right-sidebar-content {
+                        padding: 20px;
+                    }
+                    
+
+                    #toggle-messages-btn {
+                        position: fixed;
+                        top: 70px;
+                        right: 10px;
+                        font-size: 20px;
+                        cursor: pointer;
+                    }
+
+                    .message {
+                        display: none;
+                        margin-bottom: 20px;
+                    }
+
+                    .message img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        margin-right: 10px;
+                    }
+                </style>
+                <!-- Your existing HTML... -->
+                <div id="right-sidebar">
+
+
+                    <div id="toggle-messages-btn" onclick="toggleMessages()">👫Friend List</div>
+
+                    <script>
+                        function toggleMessages() {
+                            var rightSidebar = document.getElementById('right-sidebar');
+                            rightSidebar.style.width = (rightSidebar.style.width === '250px') ? '0' : '250px';
+
+                        }
+                    </script>
+
+
+                    <script>
+
+                        function showAlert(message) {
+                            alert(message);
+                        }
+
+                        function addFriend(userName) {
+                            // Assuming there is a right sidebar element with the id 'rightSidebar'
+                            var rightSidebar = document.getElementById('rightSidebar');
+
+                            // Create a new div element to display the added friend
+                            var friendDiv = document.createElement('div');
+                            friendDiv.className = 'added-friend';
+                            friendDiv.innerHTML = '<strong>' + userName + '</strong>';
+
+                            // Include a remove button for the added friend
+                            var removeButton = document.createElement('button');
+                            removeButton.className = 'btn btn-danger btn-sm';
+                            removeButton.innerHTML = 'Remove';
+                            removeButton.onclick = function () {
+                                removeFromSidebar(friendDiv);
+                            };
+
+                            // Append the friend and remove button to the right sidebar
+                            friendDiv.appendChild(removeButton);
+                            rightSidebar.appendChild(friendDiv);
+
+                            // Display an alert message
+                            showAlert(userName + ' added to your friend list');
+                        }
+
+                        function removeFromSuggestions(userName) {
+                            // Code to handle removing from suggestions (you can customize this)
+                            showAlert(userName + ' removed from suggestions');
+                        }
+
+                        function removeFromSidebar(friendDiv) {
+                            // Remove the friend card from the sidebar
+                            var rightSidebar = document.getElementById('rightSidebar');
+                            rightSidebar.removeChild(friendDiv);
+                        }
+                        function showNotification() {
+                            // Add your notification logic here
+                            alert('You have a new notification!');
+                        }
+
+                        function toggleSidebar() {
+                            var sidebar = document.getElementById('sidebar');
+                            sidebar.style.width = (sidebar.style.width === '250px') ? '0' : '250px';
+                        }
+                    </script>
+
+</body>
+
+</html>

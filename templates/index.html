@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+ <!-- Main Content-->
+ <div class="containers" class="container">
+    <!------------------------------------ Left side bar ------------------------------------------->
+        <div class="left-sidebar">
+            <div class="imp-links">
+                <a href="/profile"><img src="{% static 'images/profile-pic.png' %}">Profile</a>
+                <a href="/friends"><img src="{% static 'images/friends.png' %}">Friends</a>
+                <a href="/search"><img src="{% static 'images/group.png' %}">Find Friends</a>
+                <a href="/message"><img src="{% static 'images/messageside.png' %}">Message</a>
+                <a href="/logout"><img src="{% static 'images/logouts.jpg' %}">Logout</a>
+            </div>
+            
+            <div class="shortcut-links">
+                <p>Your Shortcuts</p>
+                <a href="https://www.itvedant.com/full-stack-developer"><img src="{% static 'images/shortcut-1.png' %}" > Web Developers</a>
+                <a href="https://www.itvedant.com/"><img src="{% static 'images/shortcut-2.png' %}" > Web Design</a>
+                <a href="https://www.itvedant.com/full-stack-developer"><img src="{% static 'images/shortcut-3.png' %}" > Full Stack</a>
+                <a href="https://www.itvedant.com/"><img src="{% static 'images/shortcut-4.png' %}" > Websites</a>
+            </div>
+        </div>
+    <!------------------------------------------- Main Content ------------------------------------------->
+            <div class="main-content">
+                <div class="story-gallary">
+                    <div class="story story1" style="background-image: linear-gradient(transparent,rgba(0,0,0,0.5)),url('/static/images/status-1.png');">
+                        <label for="videoUpload">
+                            <img src="{% static 'images/upload.png' %}" id="uploadImage">
+                            <p>Upload Video</p>
+                        </label>
+                        <input type="file" id="videoUpload" style="display: none;" accept="video/*">
+                    </div>
+                    
+                    <div class="videoPlayer" style="display: none;">
+                        <video id="myVideo" controls style="width: 300px; height: 400px;">
+                           
+                        </video>
+                        
+                        <button id="closeButton">Close</button>
+                    </div>
+                    <div class="story story2" style="background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url('/static/images/status-2.png');">
+                        <img src="{% static 'images/member-1.png' %}">
+                        <p>Ankita</p>
+                    </div>
+                    
+                    <div class="videoPlayer" style="display: none; width: 300px; height: 400px;">
+                        
+                        <video  id="myVideo" width="640" height="360" controls>
+                            <source src="E:\Social Media\images\kanhaiya.mp4" type="video/mp4">
+                            
+                                Your browser does not support the video tag.
+                        </video>
+                        <button id="playButton">Play</button>
+                        <button id="closeButton">Close</button>
+                    </div>
+                    <div class="story story3" style="background-image: linear-gradient(transparent,rgba(0,0,0,0.5)),url('/static/images/status-3.png');">
+                        <img src="{% static 'images/member-2.png' %}">
+                        <p>Kanhaiya</p>
+                    </div>
+                    <div class="videoPlayer" style="display: none; width: 300px; height: 400px;">
+                        
+                        <video  id="myVideo" width="640" height="360" controls>
+                            <source src="E:\Social Media\images\kanhaiya.mp4" type="video/mp4">
+                            
+                                Your browser does not support the video tag.
+                        </video>
+                        <button id="playButton">Play</button>
+                        <button id="closeButton">Close</button>
+                    </div>
+                    <div class="story story4" style="background-image: linear-gradient(transparent,rgba(0,0,0,0.5)),url('/static/images/status-4.png');">
+                        <img src="{% static 'images/member-3.png' %}">
+                        <p>Pratiksha</p>
+                    </div>
+                    <div class="videoPlayer" style="display: none; width: 300px; height: 400px;">
+                        
+                        <video  id="myVideo" width="640" height="360" controls>
+                            <source src="E:\Social Media\images\kanhaiya.mp4" type="video/mp4">
+                            
+                                Your browser does not support the video tag.
+                        </video>
+                        <button id="playButton">Play</button>
+                        <button id="closeButton">Close</button>
+                    </div>
+                    <div class="story story5" style="background-image: linear-gradient(transparent,rgba(0,0,0,0.5)),url('/static/images/status-5.png');">
+                        <img src="{% static 'images/member-4.png' %}">
+                        <p>Sanjay</p>
+                    </div>
+                    <div class="videoPlayer" style="display: none; width: 300px; height: 400px;">
+                        
+                        <video  id="myVideo" width="640" height="360" controls>
+                            <source src="E:\Social Media\images\kanhaiya.mp4" type="video/mp4">
+                            
+                                Your browser does not support the video tag.
+                        </video>
+                        <button id="playButton">Play</button>
+                        <button id="closeButton">Close</button>
+                    </div>
+                </div>
+                <div class="write-post-containers" class="container">
+                    <div class="user-profile">
+                        <img src="{% static 'images/profile-pic.png' %}">
+                        <div>
+                            <a href="#" class="no-underline"><p>Kanhaiya Kapase</p></a>
+                            <small>Public</small>
+                        </div>
+                    </div>
+         <!-------------------- Post Text -------------------->
+                    <div class="post-input-containers" class="container">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'submit_post' %}" id="postForm">{% csrf_token %}
+                        <textarea id="postTextArea" name="postTextArea" rows="3" placeholder="What's in your mind?" class="form-control mt-3 mb-3"></textarea>
+                        <div class="add-post-link">
+                            
+                        <!--<label for="videoInput" class="d-block mb-3 px-2 py-1 mt-2">
+                            <img src="{% static 'images/live-video.png' %}" width="20" height="15" class="mr-2"> Upload Video
+                        </label>
+                        <input type="file" id="videoInput" style="display: none;" accept="video/*"> -->
+                        
+                        <label for="photoInput" class="d-block mb-3" style="padding: 5px 10px;"> <!-- Added inline style for padding -->
+                            <img src="{% static 'images/photo.png' %}" width="20" height="15" class="mr-2"> Photo/Video
+                        </label>
+                        <input type="file" id="photoInput" name="photoInput" style="display: none;" accept="image/*, video/*">
+                        
+                        <button id="postButton" class="btn btn-primary mt-3">Post</button>
+                        </div>
+                    </form>
+                    </div>
+                    
+        
+            <!-------------------- Post Text Ends--------------------> 
+            </div>
+    <!--------------------------------------- Post Content 1 ---------------------------------->
+    {% for x in UPosts %}
+                <div class="post-containers1" class="container">
+                    <div class="post-row">
+                        <div class="user-profile">
+                            <img src="{{x.profile_pic.url}}">
+                            <div>
+                                <a href="#" class="no-underline"><p>{{x.username}}</p></a>
+                                <span>{{x.post_date}}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <p class="post-text">{{x.description}}</p>
+                    
+                    <img src="{{x.image.url}}" class="post-img">
+                    
+                    <div class="post-row">
+                        <div class="activity-icons">
+                            <!-- Like button and count -->
+                            <div>
+                                <button onclick="likePost()">
+                                    <img src="{% static 'images/like-blue.png' %}">
+                                    <span id="likeCount">0</span>
+                                </button>
+                            </div>
+                            <!-- Comment button and popup -->
+                            <div>
+                                <button onclick="showCommentPopup()">
+                                    <img src="{% static 'images/comments.png' %}">
+                                    <span id="commentCount">0</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--
+                <div class="popup" id="commentPopup" style="display: none;">
+                    <div class="popup-content">
+                        <span class="close-btn" onclick="closeCommentPopup()">&times;</span>
+                        <textarea id="commentInput" placeholder="Add your comment..."></textarea>
+                        <button onclick="addComment()">Add Comment</button>
+                    </div>
+                </div> -->
+                <div class="popups" id="commentPopup" style="display: none;">
+                    <div class="popups-content">
+                        <span class="close-btn" onclick="closeCommentPopup()">&times;</span>
+                        <textarea id="commentInput" placeholder="Add your comment..."></textarea>
+                        <button onclick="addComment()">Add Comment</button>
+                    </div>
+                </div>
+    {% endfor %}       
+   
+   
+     <!-------------------------------------Post Content 4 --------------------- ------->
+                    
+                    
+                  
+                
+               
+                
+    <!------------------------------- Post Content 5 ------------------------------------->   
+    
+    
+    
+            </div>
+            <!---------------------- Right side bar---------------------->
+            <div class="right-sidebar">
+                
+                <div class="sidebar-title">
+                    <h4>Advertisement</h4>
+                    
+                </div>
+                <img src="{% static  'images/advertisement.png' %}" class="sidebar-ads">
+    
+                <div class="sidebar-title">
+                    <h4>Conversations</h4>
+                </div>
+        {% for x in UPosts %}
+                <div class="online-list">
+                    <div class="online">
+                        <img src="{{x.profile_pic.url}}">
+                    </div>
+                    <a href="#" class="no-underline"><p>{{x.username}}</p></a>
+                </div>
+        {% endfor %}
+                <div class="online-list">
+                    <div class="online">
+                        <img src="{% static 'images/member-2.png' %}" >
+                    </div>
+                    <a href="#" class="no-underline"><p>Kanhaiya kanha</p></a>
+                </div>
+                <div class="online-list">
+                    <div class="online">
+                        <img src="{% static 'images/member-3.png' %}" >
+                    </div>
+                    <a href="#" class="no-underline"><p>Krishna Mina</p></a>
+                </div>
+    
+            </div>
+        </div>
+    
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+    </html>
+
+
+{% endblock 'main' %}
